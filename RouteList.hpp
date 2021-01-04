@@ -2,6 +2,8 @@
 
 #include"InputData.hpp"
 #include <vector>
+#include <tuple>
+
 //ルートの数は車両の数
 
 class RouteList {

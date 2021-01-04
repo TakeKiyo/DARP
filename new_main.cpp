@@ -16,6 +16,8 @@ using namespace std;
 
 
 
+
+
 int main(int argc, char *argv[]){
     int i,j;
     string tmp;
@@ -83,6 +85,7 @@ int main(int argc, char *argv[]){
         GRBEnv env=GRBEnv(true);
         env.set("LogFile", "mip1.log");
         env.start();
+        cout << "here" << endl;
         vector<GRBModel> modelList;
         for(int i=0;i<m;i++){
             GRBModel modeli = GRBModel(env);
@@ -238,6 +241,8 @@ int main(int argc, char *argv[]){
             }
         }
 
+        cout << "here" << endl;
+
 
         // ここまでの設定は最適化の中で不変
         // ここからはイテレーションごとに変化する設定
@@ -280,6 +285,8 @@ int main(int argc, char *argv[]){
             tmp = "MaximumRouteDutaion"+to_string(i);
             model.addConstr(480 >= DepotTime[i+m]-DepotTime[i],tmp);
         }
+
+        cout << "here" << endl;
 
 
 
@@ -503,6 +510,8 @@ int main(int argc, char *argv[]){
             }
             cout << endl;
         }
+
+        /*
 
         double TmpTotalPenalty,TmpBestPenalty;
         tuple<int, int,int,int> TmpTuple_for_random;
@@ -922,8 +931,8 @@ int main(int argc, char *argv[]){
         cout << "係数β:" << BETA << endl;
         cout << "RouteDistance: " << BestRouteDistance << endl;
         cout << "bestpena:"<<BestPenalty << endl;
-        cout << "NeighbohList:" << NeighborList.size() << endl;
-        cout << "AllCnt: " << Cnt << endl;
+        // cout << "NeighbohList:" << NeighborList.size() << endl;
+        // cout << "AllCnt: " << Cnt << endl;
         cout << "改善回数:" << ImprovedNumber << endl;
 
         outputfile << "総カウント数:" << search_count << "\n";
@@ -932,8 +941,8 @@ int main(int argc, char *argv[]){
         outputfile << "係数β:" << BETA << "\n";
         outputfile << "RouteDistance: " << BestRouteDistance << "\n";
         outputfile << "bestpena:"<<BestPenalty << "\n";
-        outputfile << "NeighbohList:" << NeighborList.size() << "\n";
-        outputfile << "AllCnt: " << Cnt << "\n";
+        // outputfile << "NeighbohList:" << NeighborList.size() << "\n";
+        // outputfile << "AllCnt: " << Cnt << "\n";
         outputfile << "改善回数:" << ImprovedNumber << "\n";
  
         // for(i=1;i<=2*n;i++){
@@ -965,8 +974,9 @@ int main(int argc, char *argv[]){
         outputfile.close();
 
         
-    } catch (...) {
+    } catch (GRBException e) {
         cout << "Error during optimization" << endl;
+        cout << e.getMessage() << endl;
     }
   
 }
