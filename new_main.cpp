@@ -222,10 +222,10 @@ int main(int argc, char *argv[]){
         double ridetimeY[n+1][3];
         for(i=1;i<=n;i++){
             ridetimeX[i][0] = 0;
-            // ridetimeX[i][1] = cost.getCost(i,i+n);
-            // ridetimeX[i][2] = cost.getCost(i,i+n)+1;
-            ridetimeX[i][1] = 90;
-            ridetimeX[i][2] = 91;
+            ridetimeX[i][1] = cost.getCost(i,i+n);
+            ridetimeX[i][2] = cost.getCost(i,i+n)+1;
+            // ridetimeX[i][1] = 90;
+            // ridetimeX[i][2] = 91;
             ridetimeY[i][0] = 0;
             ridetimeY[i][1] = 0;
             ridetimeY[i][2] = 1;
